@@ -45,12 +45,13 @@ INSTALLED_APPS = [
 ]
 
 TAILWIND_APP_NAME = 'theme'
-INTERNAL_IPS=['127.0.0.1', 'localhost']
+INTERNAL_IPS=['127.0.0.1', 'localhost','*']
 
 NPM_BIN_PATH = "C:/Users/OFFICE/AppData/Roaming/npm/npm.cmd"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django_browser_reload.middleware.BrowserReloadMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
