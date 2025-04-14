@@ -1,0 +1,89 @@
+{% load static %}
+<nav class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <img src="{% static 'images/Artboard 1.png' %}" alt="ScimanPress" class="w-48 h-auto" />
+      </div>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden lg:flex items-center space-x-10 font-bold">
+        <a href="/" class="{% if request.path == '/' %}text-purple-600{% else %}text-gray-600 hover:text-purple-600{% endif %} transition-colors">Home</a>
+        <a href="{% url 'about' %}" class="{% if request.path == '/about/' %}text-purple-600{% else %}text-gray-600 hover:text-purple-600{% endif %} transition-colors">About</a>
+        <a href="{% url 'callforpapers' %}" class="{% if request.path == '/callforpapers/' %}text-purple-600{% else %}text-gray-600 hover:text-purple-600{% endif %} transition-colors">Call For Papers</a>
+        <a href="{% url 'submit_paper' %}" class="{% if request.path == '/paper-submission/' %}text-purple-600{% else %}text-gray-600 hover:text-purple-600{% endif %} transition-colors">Submit Paper</a>
+        <a href="#" class="text-gray-600 hover:text-purple-600 transition-colors">Journals</a>
+        <a href="#" class="text-gray-600 hover:text-purple-600 transition-colors">Conference</a>
+      </div>
+
+      <!-- Desktop Search & Login -->
+      <div class="hidden lg:flex items-center space-x-6">
+        <div class="relative">
+          <a href="/dashboard" class="text-gray-600 hover:text-purple-600 text-2xl transition-colors" title="Dashboard">
+            <i class="fa-regular fa-circle-user"></i>
+          </a>
+        </div> 
+        <a href="#" class="bg-purple-600 text-white px-6 py-2 font-semibold rounded-full hover:bg-purple-700 transition-colors">
+          Login
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="lg:hidden flex items-center">
+        <button type="button" id="mobile-menu-button" class="text-gray-600 hover:text-purple-600 focus:outline-none" aria-expanded="false">
+          <svg id="menu-icon" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu (hidden by default) -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-200 text-center sticky top-20">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+      <a href="/" class="block px-3 py-2 {% if request.path == '/' %}text-purple-600 bg-purple-50{% else %}text-gray-600 hover:text-purple-600 hover:bg-purple-50{% endif %} rounded-md font-medium">Home</a>
+      <a href="{% url 'about' %}" class="block px-3 py-2 {% if request.path == '/about/' %}text-purple-600 bg-purple-50{% else %}text-gray-600 hover:text-purple-600 hover:bg-purple-50{% endif %} rounded-md font-medium">About</a>
+      <a href="{% url 'callforpapers' %}" class="block px-3 py-2 {% if request.path == '/callforpapers/' %}text-purple-600 bg-purple-50{% else %}text-gray-600 hover:text-purple-600 hover:bg-purple-50{% endif %} rounded-md font-medium">Call For Papers</a>
+      <a href="{% url 'submit_paper' %}" class="block px-3 py-2 {% if request.path == '/paper-submission/' %}text-purple-600 bg-purple-50{% else %}text-gray-600 hover:text-purple-600 hover:bg-purple-50{% endif %} rounded-md font-medium">Submit Paper</a>
+      <a href="#" class="block px-3 py-2 text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-md font-medium">Journals</a>
+      <a href="#" class="block px-3 py-2 text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-md font-medium">Conference</a>
+      
+      <!-- Mobile-only dashboard and login links -->
+      <div class="border-t border-gray-200 mt-2 pt-2">
+        <a href="/dashboard" class="block px-3 py-2 text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-md font-medium">
+          <i class="fa-regular fa-circle-user mr-2"></i>Dashboard
+        </a>
+        <a href="#" class="block px-3 py-2 bg-purple-600 text-white rounded-md font-medium text-center hover:bg-purple-700">
+          Login
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Simple and reliable mobile menu toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    
+    menuButton.addEventListener('click', function() {
+      // Toggle menu visibility
+      mobileMenu.classList.toggle('hidden');
+      
+      // Toggle aria-expanded attribute
+      const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', !isExpanded);
+      
+      // Change icon
+      if (mobileMenu.classList.contains('hidden')) {
+        menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+      } else {
+        menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
+      }
+    });
+  });
+</script> 
