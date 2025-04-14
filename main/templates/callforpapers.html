@@ -10,14 +10,14 @@
     </div>
 </section>
 <!-- Call for Papers Section -->
-<section class="py-16 bg-gradient-to-br from-purple-50 to-indigo-50">
+<section class="py-16 bg-gradient-to-br">
     <div class="container mx-auto px-6">
   
-      <!-- Main Content -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-        <!-- Left Column - Image -->
-        <div class="order-1 lg:order-none">
-          <div class="relative rounded-2xl overflow-hidden shadow-xl h-96">
+      <!-- Main Content - Equal Height Columns -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch"> <!-- Changed to items-stretch -->
+        <!-- Left Column - Image (now matching content height) -->
+        <div class="order-1 lg:order-none h-full flex"> <!-- Added flex and h-full -->
+          <div class="relative rounded-2xl overflow-hidden shadow-xl w-full h-full min-h-[500px]"> <!-- Added min-h -->
             <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
                  alt="Research papers" 
                  class="w-full h-full object-cover">
@@ -27,17 +27,17 @@
           </div>
         </div>
   
-        <!-- Right Column - Content -->
-        <div class="space-y-8">
+        <!-- Right Column - Content (now matching image height) -->
+        <div class="space-y-8 h-full flex flex-col"> <!-- Added flex layout -->
           <!-- Submission Details Card -->
-          <div class="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-purple-600">
-            <div class="flex items-start mb-4">
+          <div class="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-purple-600 flex-grow"> <!-- Added flex-grow -->
+            <div class="flex items-start mb-4 h-full"> <!-- Added h-full -->
               <div class="bg-purple-100 p-3 rounded-lg mr-4">
                 <i class="fas fa-calendar-check text-purple-600 text-xl"></i>
               </div>
-              <div>
+              <div class="h-full flex flex-col"> <!-- Added flex layout -->
                 <h3 class="text-xl font-bold text-gray-800 mb-2">Submission Timeline</h3>
-                <ul class="space-y-3 text-gray-600">
+                <ul class="space-y-3 text-gray-600 flex-grow"> <!-- Added flex-grow -->
                   <li class="flex items-start">
                     <span class="inline-block w-2 h-2 bg-purple-600 rounded-full mt-2 mr-3"></span>
                     <span><strong>Ongoing Submissions:</strong> Rolling basis</span>
@@ -56,14 +56,14 @@
           </div>
   
           <!-- Topics Card -->
-          <div class="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-indigo-600">
-            <div class="flex items-start mb-4">
+          <div class="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-indigo-600 flex-grow"> <!-- Added flex-grow -->
+            <div class="flex items-start mb-4 h-full"> <!-- Added h-full -->
               <div class="bg-indigo-100 p-3 rounded-lg mr-4">
                 <i class="fas fa-lightbulb text-indigo-600 text-xl"></i>
               </div>
-              <div>
+              <div class="h-full flex flex-col"> <!-- Added flex layout -->
                 <h3 class="text-xl font-bold text-gray-800 mb-2">Topics of Interest</h3>
-                <div class="flex flex-wrap gap-2 mt-4">
+                <div class="flex flex-wrap gap-2 mt-4 flex-grow items-start"> <!-- Added flex-grow -->
                   <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">Artificial Intelligence</span>
                   <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">Renewable Energy</span>
                   <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">Biotechnology</span>
@@ -76,17 +76,22 @@
           </div>
   
           <!-- CTA Button -->
-          <div class="text-center lg:text-left">
-            <a href="#" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-              Submit Your Paper Now
-              <i class="fas fa-arrow-right ml-3"></i>
-            </a>
-          </div>
+          
         </div>
+        
       </div>
-  
+      <div class="text-center lg:text-center pt-16"> <!-- Added padding-top -->
+        <a href="#" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+          Submit Your Paper Now
+          <i class="fas fa-arrow-right ml-3"></i>
+        </a>
+      </div>
+    </div>
+</section>
+
+<section class="py-16 bg-gradient-to-br bg-purple-100">
       <!-- Additional Info -->
-      <div class="mt-16 bg-white rounded-2xl shadow-lg p-8 max-w-4xl mx-auto">
+      <div class=" bg-white rounded-2xl shadow-lg p-8 max-w-4xl mx-auto">
         <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Submission Guidelines</h3>
         <div class="grid md:grid-cols-2 gap-8">
           <div class="space-y-4">
