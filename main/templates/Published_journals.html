@@ -1,24 +1,57 @@
-{%load static%}
-<section class="bg-gray-100 py-10">
-    <div class="max-w-5xl mx-auto px-4">
-      <h1 class="text-3xl font-bold mb-8 text-center">Published Journals</h1>
-  
-      {% if papers %}
-        <div class="grid md:grid-cols-2 gap-6">
-          {% for paper in papers %}
-            <div class="bg-white shadow p-6 rounded-lg border">
-              <h2 class="text-xl font-semibold mb-2">📘 {{ paper.journal }}</h2>
-              <p class="text-sm text-gray-600 mb-1"><strong>Author Info:</strong> {{ paper.author_info }}</p>
-              <p class="text-sm text-gray-600 mb-1"><strong>Keywords:</strong> {{ paper.keywords }}</p>
-              <a href="{{ paper.upload.url }}" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">
-                📎 View Uploaded File
-              </a>
-              <p class="text-xs text-gray-400 mt-2">Published on {{ paper.submitted_at|date:"M d, Y" }}</p>
+{% load static %}
+
+
+<section class="bg-gray-100 py-16">
+  <div class="max-w-screen-2xl mx-auto px-4">
+    <h1 class="text-3xl font-bold text-center mb-8">Published Journals</h1>
+
+    {% if papers %}
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for paper in papers %}
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <!-- Cover Image -->
+            {% if paper.cover_image %}
+              <img src="{{ paper.cover_image.url }}" alt="{{ paper.get_journal_display }} cover" class="w-full h-48 object-cover">
+            {% else %}
+              <div class="w-full h-48 bg-gray-200 flex items-center justify-center">
+                <span class="text-gray-500">No cover image</span>
+              </div>
+            {% endif %}
+            
+            <!-- Journal Info -->
+            <div class="p-6">
+              <h2 class="text-xl font-bold mb-2">{{ paper.get_journal_display }}</h2>
+              
+              <div class="mb-4">
+                <h3 class="text-sm font-semibold text-gray-600">Authors</h3>
+                <p class="text-sm">
+                  {% for author in paper.authors.all %}
+                    {{ author.first_name }} {{ author.last_name }}{% if not forloop.last %}, {% endif %}
+                  {% endfor %}
+                </p>
+              </div>
+              
+              <div class="mb-4">
+                <h3 class="text-sm font-semibold text-gray-600">Keywords</h3>
+                <p class="text-sm">{{ paper.keywords }}</p>
+              </div>
+              
+              <div class="flex justify-between items-center mt-6">
+                <span class="text-xs text-gray-500">
+                  Published {{ paper.submitted_at|date:"M d, Y" }}
+                </span>
+                <a href="{{ paper.upload.url }}" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                  Download Paper
+                </a>
+              </div>
             </div>
-          {% endfor %}
-        </div>
-      {% else %}
-        <p class="text-center text-gray-600">No journals have been published yet.</p>
-      {% endif %}
-    </div>
-  </section>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="text-center py-12">
+        <p class="text-gray-600">No journals have been published yet.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>

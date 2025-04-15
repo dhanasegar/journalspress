@@ -133,7 +133,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 MEDIA_URL = '/uploads/'  # Accessible from URL: http://127.0.0.1:8000/uploads/
 MEDIA_ROOT = BASE_DIR / 'uploads'  # Actual location: your_project/uploads/
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 

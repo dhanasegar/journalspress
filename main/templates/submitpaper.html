@@ -5,49 +5,260 @@
 <!-- Hero Section -->
 <section class="relative bg-gradient-to-r from-purple-600 to-indigo-800 py-20">
     <div class="container mx-auto px-6 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">New Submission</h1>
-        <p class="text-xl text-purple-100 max-w-3xl mx-auto">Submit your research paper to Educore Journals</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Submit Your Research</h1>
+        <p class="text-xl text-purple-100 max-w-3xl mx-auto">Contribute to our academic community with your latest findings</p>
     </div>
 </section>
-<section class="bg-gray-100 py-10">
-  <div class="max-w-2xl mx-auto bg-white p-8 rounded shadow">
-    <h1 class="text-2xl font-bold mb-6">Submit Your Paper</h1>
-    <form method="post" enctype="multipart/form-data" class="space-y-6">
-      {% csrf_token %}
 
-      <!-- Journal Dropdown -->
-      <div>
-        <label for="{{ form.journal.id_for_label }}" class="block text-sm font-medium text-gray-700">Journal</label>
-        {{ form.journal }}
-      </div>
 
-      <!-- Author Info -->
-      <div>
-        <label for="{{ form.author_info.id_for_label }}" class="block text-sm font-medium text-gray-700">Author Info</label>
-        {{ form.author_info }}
+<!-- Submission Form Section -->
+<section class="py-16 bg-gray-50">
+  <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Form Card with Floating Effect -->
+    <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
+      <!-- Form Header -->
+      <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-6 text-white">
+        <div class="flex items-center space-x-4">
+          <div class="bg-white/20 p-3 rounded-full">
+            {% comment %} <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg> {% endcomment %}
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold">Paper Submission Form</h2>
+            <p class="text-indigo-100">Complete all required fields</p>
+          </div>
+        </div>
       </div>
+      
+      <!-- Form Content -->
+      <form method="post" enctype="multipart/form-data" class="p-8 space-y-8">
+        {% csrf_token %}
 
-      <!-- Keywords -->
-      <div>
-        <label for="{{ form.keywords.id_for_label }}" class="block text-sm font-medium text-gray-700">Keywords</label>
-        {{ form.keywords }}
-      </div>
+        <!-- Paper Information Section -->
+        <div class="space-y-6">
+          <div class="flex items-center space-x-3">
+            <div class="h-10 w-1 bg-indigo-600 rounded-full"></div>
+            <h3 class="text-xl font-semibold text-gray-800">Paper Details</h3>
+          </div>
+          
+          <!-- Journal Selection -->
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700">Journal*</label>
+            <div class="relative">
+              {{ form.journal }}
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                {% comment %} <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg> {% endcomment %}
+              </div>
+            </div>
+          </div>
 
-      <!-- Upload -->
-      <div>
-        <label for="{{ form.upload.id_for_label }}" class="block text-sm font-medium text-gray-700">Upload File</label>
-        {{ form.upload }}
-      </div>
+          <!-- Keywords -->
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700">Keywords*</label>
+            {{ form.keywords }}
+            <p class="mt-1 text-sm text-gray-500">Separate with commas (e.g., machine learning, data analysis)</p>
+          </div>
 
-      <!-- Submit Button -->
-      <div>
-        <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700">
-          Submit Paper
-        </button>
-      </div>
-    </form>
+          <!-- Cover Image Upload -->
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700">Cover Image</label>
+            <div class="mt-1 flex justify-center px-6 pt-10 pb-8 border-2 border-dashed border-gray-300 rounded-xl hover:border-indigo-500 transition-colors duration-200">
+              <div class="space-y-2 text-center">
+                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                  <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <div class="flex text-sm text-gray-600 justify-center">
+                  <label class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none">
+                    <span>Upload a cover image</span>
+                    {{ form.cover_image }}
+                  </label>
+                </div>
+                <p class="text-xs text-gray-500">PNG, JPG up to 2MB • Recommended: 1200×630px</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paper File Upload -->
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700">Paper File*</label>
+            <div class="mt-1 flex justify-center px-6 pt-10 pb-8 border-2 border-dashed border-gray-300 rounded-xl hover:border-indigo-500 transition-colors duration-200">
+              <div class="space-y-2 text-center">
+                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                </svg>
+                <div class="flex text-sm text-gray-600 justify-center">
+                  <label class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none">
+                    <span>Upload your paper</span>
+                    {{ form.upload }}
+                  </label>
+                </div>
+                <p class="text-xs text-gray-500">PDF, DOC, or DOCX up to 10MB</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Author Information Section -->
+        <div class="space-y-6">
+          <div class="flex items-center space-x-3">
+            <div class="h-10 w-1 bg-indigo-600 rounded-full"></div>
+            <h3 class="text-xl font-semibold text-gray-800">Author Information</h3>
+          </div>
+          
+          {{ formset.management_form }}
+          <div id="author-forms-container" class="space-y-6">
+            {% for form in formset %}
+              <div class="author-form bg-gray-50 p-6 rounded-xl border border-gray-200 relative transition-all duration-200 hover:border-indigo-300 group">
+                <div class="absolute -top-3 -left-3 h-6 w-6 bg-indigo-600 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                  {{ forloop.counter }}
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {% for field in form.visible_fields %}
+                    <div class="space-y-2">
+                      <label class="block text-sm font-medium text-gray-700">{{ field.label }}</label>
+                      {{ field }}
+                    </div>
+                  {% endfor %}
+                </div>
+                
+                {% if forloop.counter0 > 0 %}
+                  <button type="button" class="remove-author absolute top-4 right-4 text-red-500 hover:text-red-700 transition-colors duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                  </button>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+
+          <button type="button" id="add-author-btn" class="flex items-center space-x-2 text-indigo-600 hover:text-indigo-800 font-medium transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+            </svg>
+            <span>Add Another Author</span>
+          </button>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-6">
+          <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center space-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" />
+            </svg>
+            <span>Submit Paper</span>
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
-
 </section>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const container = document.getElementById('author-forms-container');
+  const addBtn = document.getElementById('add-author-btn');
+  const totalForms = document.getElementById('id_authors-TOTAL_FORMS');
+  let formCount = {{ formset.total_form_count }};
+
+  addBtn.addEventListener('click', function() {
+    const newForm = container.children[0].cloneNode(true);
+    formCount++;
+    newForm.id = `author-${formCount-1}`;
+    
+    // Update all inputs
+    const inputs = newForm.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+      const name = input.name.replace(/-\d+-/, `-${formCount-1}-`);
+      const id = input.id.replace(/-\d+-/, `-${formCount-1}-`);
+      input.name = name;
+      input.id = id;
+      input.value = '';
+      if (input.type === 'checkbox') {
+        input.checked = false;
+      }
+    });
+    
+    // Update the author number indicator
+    const authorNumber = newForm.querySelector('.absolute.-top-3.-left-3');
+    if (authorNumber) {
+      authorNumber.textContent = formCount;
+    }
+    
+    // Add remove button if not present
+    if (!newForm.querySelector('.remove-author')) {
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'remove-author absolute top-4 right-4 text-red-500 hover:text-red-700 transition-colors duration-200';
+      removeBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+        </svg>
+      `;
+      newForm.appendChild(removeBtn);
+    }
+    
+    container.appendChild(newForm);
+    totalForms.value = formCount;
+    
+    // Scroll to the new form
+    newForm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  container.addEventListener('click', function(e) {
+    if (e.target.closest('.remove-author')) {
+      if (container.children.length > 1) {
+        const formToRemove = e.target.closest('.author-form');
+        formToRemove.classList.add('opacity-0', 'translate-x-4');
+        setTimeout(() => {
+          formToRemove.remove();
+          formCount--;
+          totalForms.value = formCount;
+          
+          // Update author numbers
+          Array.from(container.children).forEach((form, index) => {
+            const authorNumber = form.querySelector('.absolute.-top-3.-left-3');
+            if (authorNumber) {
+              authorNumber.textContent = index + 1;
+            }
+          });
+        }, 200);
+      }
+    }
+  });
+});
+</script>
+
+<style>
+  /* Custom styles for form elements */
+  select, input[type="text"], input[type="email"], input[type="tel"], 
+  input[type="url"], textarea {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200;
+  }
+  
+  input[type="file"] {
+    @apply hidden;
+  }
+  
+  input[type="checkbox"] {
+    @apply h-5 w-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 transition duration-150;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-indigo-400 rounded-full hover:bg-indigo-500;
+  }
+</style>
 {% endblock %}
