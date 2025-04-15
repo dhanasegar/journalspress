@@ -1,11 +1,15 @@
-<footer class="bg-purple-50 text-black">
+{%load static%}
+<footer class="bg-purple-100 text-black">
     <div class="max-w-screen-2xl   mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
   
         <!-- Logo & About -->
         <div>
             
-          <h3 class="text-xl font-bold mb-4"><i class="fa-solid fa-hourglass-start"></i>  SciManPress</h3>
+          <a href="/" class="flex items-center mb-4">
+            <img src="{% static 'images/logo.png' %}" alt="SciManPress" class="w-48 h-auto" />
+          </a>
+          
           <p class="text-gray-400 font-semibold">
             Leading platform for academic journal publications and research papers.
           </p>
@@ -25,41 +29,74 @@
 
         <div>
           <h4 class="text-lg font-bold mb-4">Follow Us</h4>
-          <ul class="space-y-2">
+          <div class="space-y-4">
             <!-- Social Media Icons -->
-            <li class="flex items-center space-x-4">
-              <a href="#" class="text-gray-400 hover:text-purple-600 transition-colors">
-                <i class="fab fa-facebook-f text-xl"></i>
+            <div class="flex items-center space-x-4">
+              <!-- Facebook -->
+              <a href="https://facebook.com/yourpage" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 class="text-gray-400  transition-colors duration-300 hover:text-purple-600"
+                 aria-label="Facebook">
+                <i class="fab fa-facebook-f text-xl w-8 h-8 "></i>
               </a>
-              <a href="#" class="text-gray-400 hover:text-purple-600 transition-colors">
-                <i class="fab fa-x-twitter text-xl"></i>
+              
+              <!-- Twitter/X -->
+              <a href="https://twitter.com/yourhandle" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 class="text-gray-400  transition-colors duration-300 hover:text-purple-600"
+                 aria-label="Twitter">
+                <i class="fab fa-x-twitter text-xl w-8 h-8 "></i>
               </a>
-              <a href="#" class="text-gray-400 hover:text-purple-600 transition-colors">
-                <i class="fab fa-linkedin-in text-xl"></i>
+              
+              <!-- LinkedIn -->
+              <a href="https://linkedin.com/company/yourcompany" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 class="text-gray-400  transition-colors duration-300 hover:text-purple-600"
+                 aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in text-xl w-8 h-8 "></i>
               </a>
-              <a href="#" class="text-gray-400 hover:text-purple-600 transition-colors">
-                <i class="fab fa-instagram text-xl"></i>
+              
+              <!-- Instagram -->
+              <a href="https://instagram.com/yourprofile" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 class="text-gray-400  transition-colors duration-300 hover:text-purple-600"
+                 aria-label="Instagram">
+                <i class="fab fa-instagram text-xl w-8 h-8    "></i>
               </a>
-            </li>
-          </ul>
+              
+            </div>
+            
+          </div>
         </div>
   
         <!-- Contact Info -->
         <div>
           <h4 class="text-lg font-bold mb-4">Contact Us</h4>
           <div class="space-y-2 font-semibold">
-            <p class="flex items-center text-gray-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 4h16v16H4V4z" /></svg>
+            <!-- Email (clickable mailto link) -->
+            <a href="info@scimanpress.com" class="flex items-center text-gray-400 hover:text-purple-600 transition-colors">
+              <i class="fa-regular fa-paper-plane mr-2"></i>
               info@scimanpress.com
-            </p>
-            <p class="flex items-center text-gray-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 5h18M3 10h18M3 15h18M3 20h18" /></svg>
+            </a>
+            
+            <!-- Phone (clickable tel link) -->
+            <a href="tel:+15551234567" class="flex items-center text-gray-400 hover:text-purple-600 transition-colors">
+              <i class="fa-solid fa-phone mr-2"></i>
               +1 (555) 123-4567
-            </p>
-            <p class="flex items-center text-gray-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 4.6 6 11 7 12 1-1 7-7.4 7-12 0-3.87-3.13-7-7-7z" /></svg>
+            </a>
+            
+            <!-- Address (clickable Google Maps link) -->
+            <a href="https://maps.google.com?q=123+Academic+Street,+NY+10001" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="flex items-center text-gray-400 hover:text-purple-600 transition-colors">
+              <i class="fa-solid fa-location-dot mr-2"></i>
               123 Academic Street, NY 10001
-            </p>
+            </a>
           </div>
         </div>
   
