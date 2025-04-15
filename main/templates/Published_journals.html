@@ -1,0 +1,24 @@
+{%load static%}
+<section class="bg-gray-100 py-10">
+    <div class="max-w-5xl mx-auto px-4">
+      <h1 class="text-3xl font-bold mb-8 text-center">Published Journals</h1>
+  
+      {% if papers %}
+        <div class="grid md:grid-cols-2 gap-6">
+          {% for paper in papers %}
+            <div class="bg-white shadow p-6 rounded-lg border">
+              <h2 class="text-xl font-semibold mb-2">📘 {{ paper.journal }}</h2>
+              <p class="text-sm text-gray-600 mb-1"><strong>Author Info:</strong> {{ paper.author_info }}</p>
+              <p class="text-sm text-gray-600 mb-1"><strong>Keywords:</strong> {{ paper.keywords }}</p>
+              <a href="{{ paper.upload.url }}" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">
+                📎 View Uploaded File
+              </a>
+              <p class="text-xs text-gray-400 mt-2">Published on {{ paper.submitted_at|date:"M d, Y" }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="text-center text-gray-600">No journals have been published yet.</p>
+      {% endif %}
+    </div>
+  </section>
