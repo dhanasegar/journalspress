@@ -1,11 +1,25 @@
 from django.db import models
 
 JOURNAL_CHOICES = [
-    ('AI', 'Artificial Intelligence'),
-    ('DS', 'Data Science'),
-    ('SE', 'Software Engineering'),
-    ('BIO', 'Bioinformatics'),
+    ('PHARM', 'Pharmacy'),
+    ('MGMT', 'Management'),
+    ('PHYS', 'Physics'),
+    ('CHEM', 'Applied Chemistry'),
+    ('MATH', 'Applied Mathematics'),
+    ('SCI', 'Applied Science'),
+    ('SPORT', 'Sports'),
+    ('PE', 'Physical Education'),
+    ('YOGA', 'Yoga'),
+    ('PHYSIO', 'Physiotherapy'),
+    ('AGRI', 'Agriculture'),
+    ('LAW', 'Legal Education'),
+    ('MED', 'Medical Research'),
+    ('CLIN', 'Clinical Research'),
+    ('MECH', 'Mechanical Engineering'),
+    ('EEE', 'Electrical Engineering'),
+    ('CSE', 'Computer Engineering'),
 ]
+
 
 COUNTRY_CHOICES = [
     ('IN', 'India'),

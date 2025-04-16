@@ -23,7 +23,7 @@ class AuthorForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'email', 'phone_number', 
                  'country', 'organization', 'website', 'is_corresponding']
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'p-2 border rounded'}),
+            'first_name': forms.TextInput(attrs={'class': 'w-full p-2 border rounded'}),
             'last_name': forms.TextInput(attrs={'class': 'w-full p-2 border rounded'}),
             'email': forms.EmailInput(attrs={'class': 'w-full p-2 border rounded'}),
             'phone_number': forms.TextInput(attrs={'class': 'w-full p-2 border rounded'}),

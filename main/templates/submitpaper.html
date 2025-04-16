@@ -17,15 +17,13 @@
     <!-- Form Card with Floating Effect -->
     <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
       <!-- Form Header -->
-      <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-6 text-white">
-        <div class="flex items-center space-x-4">
-          <div class="bg-white/20 p-3 rounded-full">
-            {% comment %} <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg> {% endcomment %}
+      <div class="bg-gradient-to-r from-purple-600 to-purple-900 p-6 text-white">
+        <div class="flex items-center text-center space-x-4">
+          <div >
+            <i class="fa-solid fa-paper-plane fa-2xl"></i>
           </div>
           <div>
-            <h2 class="text-2xl font-bold">Paper Submission Form</h2>
+            <h2 class="text-2xl font-bold ">Paper Submission Form</h2>
             <p class="text-indigo-100">Complete all required fields</p>
           </div>
         </div>
@@ -44,11 +42,11 @@
           
           <!-- Journal Selection -->
           <div class="space-y-2">
-            <label class="block text-sm font-medium text-gray-700">Journal*</label>
+            <label class="block text-lg font-medium text-gray-700">Journal*</label>
             <div class="relative">
               {{ form.journal }}
               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                {% comment %} <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                 {% comment %} <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                 </svg> {% endcomment %}
               </div>
@@ -57,7 +55,7 @@
 
           <!-- Keywords -->
           <div class="space-y-2">
-            <label class="block text-sm font-medium text-gray-700">Keywords*</label>
+            <label class="block text-lg font-medium text-gray-700">Keywords*</label>
             {{ form.keywords }}
             <p class="mt-1 text-sm text-gray-500">Separate with commas (e.g., machine learning, data analysis)</p>
           </div>
