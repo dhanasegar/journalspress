@@ -1,15 +1,13 @@
-{%load static%}
+{% load static %}
 <footer class="bg-purple-100 text-black">
-    <div class="max-w-screen-2xl   mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="grid grid-cols-1 text-center md:text-left md:grid-cols-4 gap-8">
   
         <!-- Logo & About -->
-        <div>
-            
+        <div class="flex flex-col items-center md:items-start">
           <a href="/" class="flex items-center mb-4">
             <img src="{% static 'images/logo.png' %}" alt="SciManPress" class="w-48 h-auto" />
           </a>
-          
           <p class="text-gray-600 font-semibold">
             Leading platform for academic journal publications and research papers.
           </p>
@@ -17,79 +15,78 @@
   
         <!-- Quick Links -->
         <div class="font-semibold">
-          <h4 class="text-lg font-bold mb-4">Quick Links</h4>
-          <ul class="space-y-2">
-            <li><a href="" class="text-gray-600 hover:text-purple-600">Home</a></li>
-            <li><a href="" class="text-gray-600 hover:text-purple-600">Journals</a></li>
-            <li><a href="" class="text-gray-600 hover:text-purple-600">Submit Paper</a></li>
-            <li><a href="" class="text-gray-600 hover:text-purple-600">Editorial Board</a></li>
+          <h4 class="text-lg font-bold mb-4 text-center md:text-left">Quick Links</h4>
+          <ul class="space-y-2 flex flex-col items-center md:items-start">
+            <li><a href="/" class="text-gray-600 hover:text-purple-600">Home</a></li>
+            <li><a href="{% url 'about' %}" class="text-gray-600 hover:text-purple-600">About</a></li>
+            <li><a href="{% url 'callforpapers' %}" class="text-gray-600 hover:text-purple-600">Call For Papers</a></li>
+            <li><a href="{% url 'submit_paper' %}" class="text-gray-600 hover:text-purple-600">Submit Paper</a></li>
+            <li><a href="{% url 'journals' %}" class="text-gray-600 hover:text-purple-600">Journals</a></li>
+            <li><a href="{% url 'conference' %}" class="text-gray-600 hover:text-purple-600">Conference</a></li>
           </ul>
         </div>
   
-
+        <!-- Social Media -->
         <div>
-          <h4 class="text-lg font-bold mb-4">Follow Us</h4>
-          <div class="space-y-4">
-            <!-- Social Media Icons -->
+          <h4 class="text-lg font-bold mb-4 text-center md:text-left">Follow Us</h4>
+          <div class="space-y-4 flex flex-col items-center md:items-start">
             <div class="flex items-center space-x-4">
               <!-- Facebook -->
               <a href="https://facebook.com/yourpage" 
                  target="_blank" 
                  rel="noopener noreferrer"
-                 class="text-gray-600  transition-colors duration-300 hover:text-purple-600"
+                 class="text-gray-600 transition-colors duration-300 hover:text-purple-600"
                  aria-label="Facebook">
-                <i class="fab fa-facebook-f text-xl w-8 h-8 "></i>
+                <i class="fab fa-facebook-f text-xl w-8 h-8"></i>
               </a>
               
               <!-- Twitter/X -->
               <a href="https://twitter.com/yourhandle" 
                  target="_blank" 
                  rel="noopener noreferrer"
-                 class="text-gray-600  transition-colors duration-300 hover:text-purple-600"
+                 class="text-gray-600 transition-colors duration-300 hover:text-purple-600"
                  aria-label="Twitter">
-                <i class="fab fa-x-twitter text-xl w-8 h-8 "></i>
+                <i class="fab fa-x-twitter text-xl w-8 h-8"></i>
               </a>
               
               <!-- LinkedIn -->
               <a href="https://linkedin.com/company/yourcompany" 
                  target="_blank" 
                  rel="noopener noreferrer"
-                 class="text-gray-600  transition-colors duration-300 hover:text-purple-600"
+                 class="text-gray-600 transition-colors duration-300 hover:text-purple-600"
                  aria-label="LinkedIn">
-                <i class="fab fa-linkedin-in text-xl w-8 h-8 "></i>
+                <i class="fab fa-linkedin-in text-xl w-8 h-8"></i>
               </a>
               
               <!-- Instagram -->
               <a href="https://instagram.com/yourprofile" 
                  target="_blank" 
                  rel="noopener noreferrer"
-                 class="text-gray-600  transition-colors duration-300 hover:text-purple-600"
+                 class="text-gray-600 transition-colors duration-300 hover:text-purple-600"
                  aria-label="Instagram">
-                <i class="fab fa-instagram text-xl w-8 h-8    "></i>
+                <i class="fab fa-instagram text-xl w-8 h-8"></i>
               </a>
-              
             </div>
-            
           </div>
         </div>
   
         <!-- Contact Info -->
         <div>
-          <h4 class="text-lg font-bold mb-4">Contact Us</h4>
-          <div class="space-y-2 font-semibold">
-            <!-- Email (clickable mailto link) -->
-            <a href="info@scimanpress.com" class="flex items-center text-gray-600 hover:text-purple-600 transition-colors">
+          <h4 class="text-lg font-bold mb-4 text-center md:text-left">Contact Us</h4>
+          <div class="space-y-2 font-semibold flex flex-col items-center md:items-start">
+            <!-- Email -->
+            <a href="mailto:info@scimanpress.com" class="flex items-center text-gray-600 hover:text-purple-600 transition-colors">
               <i class="fa-regular fa-paper-plane mr-2"></i>
               info@scimanpress.com
             </a>
             
-            <!-- Phone (clickable tel link) -->
+            <!-- Phone -->
             <a href="tel:+15551234567" class="flex items-center text-gray-600 hover:text-purple-600 transition-colors">
               <i class="fa-solid fa-phone mr-2"></i>
               +1 (555) 123-4567
             </a>
             
-            <!-- Address (clickable Google Maps link) -->
+            <!-- Address -->
             <a href="https://maps.google.com?q=123+Academic+Street,+NY+10001" 
                target="_blank" 
                rel="noopener noreferrer"
@@ -99,19 +96,19 @@
             </a>
           </div>
         </div>
-  
       </div>
   
       <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-600">
-        <span class="text-sm text-gray-600 dark:text-gray-600">
-            <i class="fa-regular hover:text-purple-600 fa-copyright "></i> 2025 <a href="/" class="hover:text-purple-600 underline hover:underline">
-              SciManPress
-            </a>
-            . All Rights Reserved, Designed by  <a href="https://brain-insight.com/" target="_blank" class="hover:text-purple-600 underline hover:underline">
-              BrainInsight
-            </a>
-          </span>
+        <span class="text-sm text-gray-600">
+          <i class="fa-regular hover:text-purple-600 fa-copyright"></i> 2025 
+          <a href="/" class="hover:text-purple-600 underline hover:underline">
+            SciManPress
+          </a>
+          . All Rights Reserved, Designed by  
+          <a href="https://brain-insight.com/" target="_blank" class="hover:text-purple-600 underline hover:underline">
+            BrainInsight
+          </a>
+        </span>
       </div>
     </div>
-  </footer>
-  
+</footer>

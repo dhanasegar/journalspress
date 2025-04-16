@@ -7,7 +7,7 @@ from django.contrib import messages
 from .models import JOURNAL_CHOICES
 
 def home(request):
-    """Render the home page with approved/published journals"""
+   
     category = request.GET.get('category', None)
     papers = SubmittedPaper.objects.filter(is_approved=True)
     
@@ -21,11 +21,11 @@ def home(request):
     return render(request, 'home.html', context)
 
 def about(request):
-    """Render the about page"""
+   
     return render(request, 'about.html')
 
 def callforpapers(request):
-    """Render the call for papers page"""
+  
     return render(request, 'callforpapers.html')
 
 def submit_paper(request):
@@ -87,5 +87,9 @@ def filter_journals(request):
     return JsonResponse({'html': html})
 
 def submission_success(request):
-    """Render the about page"""
+  
     return render(request, 'submission_success.html')
+
+def conference(request):
+  
+    return render(request, 'conference.html')

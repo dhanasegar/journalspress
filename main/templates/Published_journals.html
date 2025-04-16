@@ -9,7 +9,7 @@
       <h2 class="text-lg font-semibold text-gray-700 mb-4">Filter by Category</h2>
       <div class="flex flex-wrap gap-2" id="filter-buttons">
         <button data-category="all" 
-           class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-blue-600 text-white transition-colors">
+           class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-purple-600 text-white transition-colors">
           All Categories
         </button>
         {% for value, label in JOURNAL_CHOICES %}
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Set initial active button based on URL
   const urlParams = new URLSearchParams(window.location.search);
   const initialCategory = urlParams.get('category') || 'all';
-  document.querySelector(`.filter-btn[data-category="${initialCategory}"]`).classList.replace('bg-gray-200', 'bg-blue-600');
+  document.querySelector(`.filter-btn[data-category="${initialCategory}"]`).classList.replace('bg-gray-200', 'bg-purple-600');
   document.querySelector(`.filter-btn[data-category="${initialCategory}"]`).classList.replace('text-gray-700', 'text-white');
 
   filterButtons.forEach(button => {
@@ -44,10 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Update button styles
       filterButtons.forEach(btn => {
-        btn.classList.replace('bg-blue-600', 'bg-gray-200');
+        btn.classList.replace('bg-purple-600', 'bg-gray-200');
         btn.classList.replace('text-white', 'text-gray-700');
       });
-      this.classList.replace('bg-gray-200', 'bg-blue-600');
+      this.classList.replace('bg-gray-200', 'bg-purple-600');
       this.classList.replace('text-gray-700', 'text-white');
       
       // Update URL

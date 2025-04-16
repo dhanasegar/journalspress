@@ -17,7 +17,7 @@
     <!-- Form Card with Floating Effect -->
     <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
       <!-- Form Header -->
-      <div class="bg-gradient-to-r from-purple-600 to-purple-900 p-6 text-white">
+      <div class="bg-gradient-to-r from-purple-600 to-indigo-800 p-6 text-white">
         <div class="flex items-center text-center space-x-4">
           <div >
             <i class="fa-solid fa-paper-plane fa-2xl"></i>
@@ -62,7 +62,7 @@
 
           <!-- Cover Image Upload -->
           <div class="space-y-2">
-            <label class="block text-sm font-medium text-gray-700">Cover Image</label>
+            <label class="block text-lg font-medium text-gray-700">Cover Image</label>
             <div class="mt-1 flex justify-center px-6 pt-10 pb-8 border-2 border-dashed border-gray-300 rounded-xl hover:border-indigo-500 transition-colors duration-200">
               <div class="space-y-2 text-center">
                 <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
@@ -81,7 +81,7 @@
 
           <!-- Paper File Upload -->
           <div class="space-y-2">
-            <label class="block text-sm font-medium text-gray-700">Paper File*</label>
+            <label class="block text-lg font-medium text-gray-700">Paper File*</label>
             <div class="mt-1 flex justify-center px-6 pt-10 pb-8 border-2 border-dashed border-gray-300 rounded-xl hover:border-indigo-500 transition-colors duration-200">
               <div class="space-y-2 text-center">
                 <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -103,7 +103,7 @@
         <div class="space-y-6">
           <div class="flex items-center space-x-3">
             <div class="h-10 w-1 bg-indigo-600 rounded-full"></div>
-            <h3 class="text-xl font-semibold text-gray-800">Author Information</h3>
+            <h3 class="text-lg font-semibold text-gray-800">Author Information</h3>
           </div>
           
           {{ formset.management_form }}
@@ -259,4 +259,5 @@ document.addEventListener('DOMContentLoaded', function() {
     @apply bg-indigo-400 rounded-full hover:bg-indigo-500;
   }
 </style>
+{% include 'partials/sub_footer.html' %}
 {% endblock %}

@@ -81,7 +81,7 @@
         
       </div>
       <div class="text-center lg:text-center pt-16"> <!-- Added padding-top -->
-        <a href="#" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+        <a href="{% url "submit_paper" %}" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           Submit Your Paper Now
           <i class="fas fa-arrow-right ml-3"></i>
         </a>
@@ -138,4 +138,5 @@
       </div>
     </div>
   </section>
+  {% include 'partials/sub_footer.html' %}
 {% endblock %}

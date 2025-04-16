@@ -30,7 +30,8 @@ class AuthorForm(forms.ModelForm):
             'country': forms.Select(attrs={'class': 'w-full p-2 border rounded'}),
             'organization': forms.TextInput(attrs={'class': 'w-full p-2 border rounded'}),
             'website': forms.URLInput(attrs={'class': 'w-full p-2 border rounded'}),
-            'is_corresponding': forms.CheckboxInput(attrs={'class': 'ml-2'}),
+            'is_corresponding': forms.CheckboxInput(attrs={'class': 'h-5 w-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500 '
+            'cursor-pointer transition-all duration-200', 'style': 'box-shadow: 0 0 0 2px rgba(147, 51, 234, 0.2)',}),
         }
 
 AuthorFormSet = modelformset_factory(

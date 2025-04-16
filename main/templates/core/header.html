@@ -13,9 +13,9 @@
         <a href="/" class="{% if request.path == '/' %}text-purple-600{% else %}text-gray-600 hover:text-purple-600{% endif %} transition-colors">Home</a>
         <a href="{% url 'about' %}" class="{% if request.path == '/about/' %}text-purple-600{% else %}text-gray-600 hover:text-purple-600{% endif %} transition-colors">About</a>
         <a href="{% url 'callforpapers' %}" class="{% if request.path == '/callforpapers/' %}text-purple-600{% else %}text-gray-600 hover:text-purple-600{% endif %} transition-colors">Call For Papers</a>
-        <a href="{% url 'submit_paper' %}" class="{% if request.path == '/paper-submission/' %}text-purple-600{% else %}text-gray-600 hover:text-purple-600{% endif %} transition-colors">Submit Paper</a>
-        <a href="{% url 'journals' %}" class="text-gray-600 hover:text-purple-600 transition-colors">Journals</a>
-        <a href="#" class="text-gray-600 hover:text-purple-600 transition-colors">Conference</a>
+        <a href="{% url 'submit_paper' %}" class="{% if request.path == '/submitpaper/' %}text-purple-600{% else %}text-gray-600 hover:text-purple-600{% endif %} transition-colors">Submit Paper</a>
+        <a href="{% url 'journals' %}" class="{% if request.path == '/journals/' %}text-purple-600{% else %}text-gray-600 hover:text-purple-600{% endif %} transition-colors">Journals</a>
+        <a href="{% url 'conference' %}" class="{% if request.path == '/conference/' %}text-purple-600{% else %}text-gray-600 hover:text-purple-600{% endif %} transition-colors">Conference</a>
       </div>
 
       <!-- Desktop Search & Login -->
@@ -25,7 +25,7 @@
             <i class="fa-regular fa-circle-user"></i>
           </a>
         </div> 
-        <a href="#" class="bg-purple-600 text-white px-6 py-2 font-semibold rounded-full hover:bg-purple-700 transition-colors">
+        <a href="#" class=" bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 font-semibold rounded-full hover:bg-purple-900 transition-colors">
           Login
         </a>
       </div>
@@ -47,9 +47,9 @@
       <a href="/" class="block px-3 py-2 {% if request.path == '/' %}text-purple-600 bg-purple-50{% else %}text-gray-600 hover:text-purple-600 hover:bg-purple-50{% endif %} rounded-md font-medium">Home</a>
       <a href="{% url 'about' %}" class="block px-3 py-2 {% if request.path == '/about/' %}text-purple-600 bg-purple-50{% else %}text-gray-600 hover:text-purple-600 hover:bg-purple-50{% endif %} rounded-md font-medium">About</a>
       <a href="{% url 'callforpapers' %}" class="block px-3 py-2 {% if request.path == '/callforpapers/' %}text-purple-600 bg-purple-50{% else %}text-gray-600 hover:text-purple-600 hover:bg-purple-50{% endif %} rounded-md font-medium">Call For Papers</a>
-      <a href="{% url 'submit_paper' %}" class="block px-3 py-2 {% if request.path == '/paper-submission/' %}text-purple-600 bg-purple-50{% else %}text-gray-600 hover:text-purple-600 hover:bg-purple-50{% endif %} rounded-md font-medium">Submit Paper</a>
-      <a href="{% url 'journals' %}" class="block px-3 py-2 text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-md font-medium">Journals</a>
-      <a href="#" class="block px-3 py-2 text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-md font-medium">Conference</a>
+      <a href="{% url 'submit_paper' %}" class="block px-3 py-2 {% if request.path == '/submitpaper/' %}text-purple-600 bg-purple-50{% else %}text-gray-600 hover:text-purple-600 hover:bg-purple-50{% endif %} rounded-md font-medium">Submit Paper</a>
+      <a href="{% url 'journals' %}" class="block px-3 py-2 {% if request.path == '/journals/' %}text-purple-600 bg-purple-50{% else %}text-gray-600 hover:text-purple-600 hover:bg-purple-50{% endif %} rounded-md font-medium">Journals</a>
+      <a href="{% url 'conference' %}" class="block px-3 py-2 {% if request.path == '/conference/' %}text-purple-600 bg-purple-50{% else %}text-gray-600 hover:text-purple-600 hover:bg-purple-50{% endif %} rounded-md font-medium">Conference</a>
       
       <!-- Mobile-only dashboard and login links -->
       <div class="border-t border-gray-200 mt-2 pt-2">

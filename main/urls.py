@@ -11,5 +11,6 @@ urlpatterns = [
 
     path('filter-journals/', views.filter_journals, name='filter_journals'),
     path('submission_success/', views.submission_success, name='submission_success'),
+    path('conference/', views.conference, name='conference'),
 
 ]
