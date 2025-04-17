@@ -1,6 +1,10 @@
 from django.contrib import admin
 from .models import SubmittedPaper, Author
+from django.contrib import admin
 
+admin.site.site_header = "John Doe Administration"
+admin.site.site_title = "John Doe Portal"
+admin.site.index_title = "Welcome to John Doe Admin"
 class AuthorInline(admin.TabularInline):
     model = Author
     extra = 1

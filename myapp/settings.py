@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['.vercel.app', '.now.sh',"127.0.0.1"]
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'theme',
     'main',
     'django_browser_reload',
+    
 ]
 
 TAILWIND_APP_NAME = 'theme'
