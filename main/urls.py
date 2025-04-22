@@ -1,18 +1,19 @@
 from django.urls import path
-from . import views 
-from .views import journal_detail
+from . import views
+
 urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('callforpapers/', views.callforpapers, name='callforpapers'),
-    path('submitpaper/', views.submit_paper, name='submit_paper'),
-
-    path('journals/', views.journals, name='journals'),
-
-    path('filter-journals/', views.filter_journals, name='filter_journals'),
-    path('submission_success/', views.submission_success, name='submission_success'),
+   
     path('conference/', views.conference, name='conference'),
 
-    path('dashboard/', views.dashboard, name='dashboard'),
-    path('journal/<str:journal_code>/', views.journal_detail, name='journal_detail'),
+
+
+    path('submit/', views.submit_paper, name='submit_paper'),
+    path('submit/step2/', views.submit_paper2, name='submit_paper2'),
+    path('submit/complete/', views.submit_complete, name='submit_complete'),
+    path('journals/', views.journal_list, name='journal_list'),
+    path('journal/<int:journal_id>/', views.journal_details, name='journal_details'),
+    path('admin/approve/<int:journal_id>/', views.admin_approve, name='admin_approve'),
 ]

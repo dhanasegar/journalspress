@@ -1,118 +1,46 @@
-<!-- journal_detail.html -->
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="relative bg-gradient-to-r from-purple-600 to-indigo-800 py-20">
-    <div class="container mx-auto px-6 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">{{ journal.title }}</h1>
-        <p class="text-xl text-purple-100 max-w-3xl mx-auto">ISSN: {{ journal.issn }}</p>
-    </div>
-</section>
-
-<!-- Journal Navigation -->
-<div class="bg-white shadow-sm sticky top-0 z-10">
-    <div class="container mx-auto px-4">
-        <nav class="flex overflow-x-auto py-4 space-x-8">
-            <a href="#about" class="whitespace-nowrap px-1 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600 border-b-2 border-transparent hover:border-indigo-600 transition-colors duration-200">About</a>
-            <a href="#aim-scope" class="whitespace-nowrap px-1 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600 border-b-2 border-transparent hover:border-indigo-600 transition-colors duration-200">Aim & Scope</a>
-            <a href="#call-for-papers" class="whitespace-nowrap px-1 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600 border-b-2 border-transparent hover:border-indigo-600 transition-colors duration-200">Call for Papers</a>
-            <a href="#guidelines" class="whitespace-nowrap px-1 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600 border-b-2 border-transparent hover:border-indigo-600 transition-colors duration-200">Guidelines</a>
-            <a href="#editorial-board" class="whitespace-nowrap px-1 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600 border-b-2 border-transparent hover:border-indigo-600 transition-colors duration-200">Editorial Board</a>
-            <a href="#archive" class="whitespace-nowrap px-1 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600 border-b-2 border-transparent hover:border-indigo-600 transition-colors duration-200">Archive</a>
-            <a href="#indexes" class="whitespace-nowrap px-1 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600 border-b-2 border-transparent hover:border-indigo-600 transition-colors duration-200">Indexes</a>
-            <a href="#contact" class="whitespace-nowrap px-1 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600 border-b-2 border-transparent hover:border-indigo-600 transition-colors duration-200">Contact</a>
-        </nav>
+<div class="container mx-auto p-6">
+    <div class="bg-white p-6 rounded-lg shadow">
+        <img src="{{ journal.cover_image.url }}" alt="Cover" class="w-full h-64 object-cover mb-6 rounded">
+        <h1 class="text-3xl font-bold mb-4">{{ journal.title }}</h1>
+        
+        <div class="space-y-6">
+            <div>
+                <h2 class="text-xl font-semibold">About Journal</h2>
+                <p class="text-gray-600">{{ journal.about }}</p>
+            </div>
+            <div>
+                <h2 class="text-xl font-semibold">Aim & Scope</h2>
+                <p class="text-gray-600">{{ journal.aim_scope }}</p>
+            </div>
+            <div>
+                <h2 class="text-xl font-semibold">Call for Papers</h2>
+                <p class="text-gray-600">{{ journal.call_for_papers }}</p>
+            </div>
+            <div>
+                <h2 class="text-xl font-semibold">Author Guidelines</h2>
+                <p class="text-gray-600">{{ journal.author_guidelines }}</p>
+            </div>
+            <div>
+                <h2 class="text-xl font-semibold">Editorial Board</h2>
+                <p class="text-gray-600">{{ journal.editorial_board }}</p>
+            </div>
+            <div>
+                <h2 class="text-xl font-semibold">Archive</h2>
+                <p class="text-gray-600">{{ journal.archive }}</p>
+            </div>
+            <div>
+                <h2 class="text-xl font-semibold">Indexes</h2>
+                <p class="text-gray-600">{{ journal.indexes }}</p>
+            </div>
+            <div>
+                <h2 class="text-xl font-semibold">Download</h2>
+                <a href="{{ journal.downloads.url }}" class="text-blue-500 hover:underline">Download PDF</a>
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- Journal Content -->
-<div class="container mx-auto px-4 py-12">
-    <!-- About Journal -->
-    <section id="about" class="mb-16">
-        <h2 class="text-3xl font-bold text-gray-800 mb-6 pb-2 border-b border-gray-200">About Journal</h2>
-        <div class="prose max-w-none">
-            {{ detail.about|default:"No information available yet."|linebreaks }}
-        </div>
-    </section>
-
-    <!-- Aim & Scope -->
-    <section id="aim-scope" class="mb-16">
-        <h2 class="text-3xl font-bold text-gray-800 mb-6 pb-2 border-b border-gray-200">Aim & Scope</h2>
-        <div class="prose max-w-none">
-            {{ detail.aim_scope|default:"No information available yet."|linebreaks }}
-        </div>
-    </section>
-
-    <!-- Call for Papers -->
-    <section id="call-for-papers" class="mb-16">
-        <h2 class="text-3xl font-bold text-gray-800 mb-6 pb-2 border-b border-gray-200">Call for Papers</h2>
-        <div class="prose max-w-none">
-            {{ detail.call_for_papers|default:"No information available yet."|linebreaks }}
-        </div>
-    </section>
-
-    <!-- Author Guidelines -->
-    <section id="guidelines" class="mb-16">
-        <h2 class="text-3xl font-bold text-gray-800 mb-6 pb-2 border-b border-gray-200">Author Guidelines</h2>
-        <div class="prose max-w-none">
-            {{ detail.author_guidelines|default:"No information available yet."|linebreaks }}
-        </div>
-    </section>
-
-    <!-- Editorial Board -->
-    <section id="editorial-board" class="mb-16">
-        <h2 class="text-3xl font-bold text-gray-800 mb-6 pb-2 border-b border-gray-200">Editorial Board</h2>
-        <div class="prose max-w-none">
-            {{ detail.editorial_board|default:"No information available yet."|linebreaks }}
-        </div>
-    </section>
-
-    <!-- Archive -->
-    <section id="archive" class="mb-16">
-        <h2 class="text-3xl font-bold text-gray-800 mb-6 pb-2 border-b border-gray-200">Archive</h2>
-        <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {% for paper in papers %}
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-                <div class="p-6">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ paper.title }}</h3>
-                    <div class="flex justify-between items-center">
-                        <a href="{{ paper.upload.url }}" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium" download>Download</a>
-                    </div>
-                </div>
-            </div>
-            {% empty %}
-            <div class="col-span-3 text-center py-8 text-gray-500">
-                No papers published yet
-            </div>
-            {% endfor %}
-        </div>
-    </section>
-
-    <!-- Indexes -->
-    <section id="indexes" class="mb-16">
-        <h2 class="text-3xl font-bold text-gray-800 mb-6 pb-2 border-b border-gray-200">Indexes</h2>
-        <div class="prose max-w-none">
-            {{ detail.indexes|default:"No information available yet."|linebreaks }}
-        </div>
-    </section>
-
-    <!-- Contact Us -->
-    <section id="contact" class="mb-16">
-        <h2 class="text-3xl font-bold text-gray-800 mb-6 pb-2 border-b border-gray-200">Contact Us</h2>
-        <div class="prose max-w-none">
-            {{ detail.contact_info|default:"No contact information available yet."|linebreaks }}
-        </div>
-    </section>
-</div>
-
-<!-- Call to Action -->
-<section class="bg-gray-50 py-12">
-    <div class="container mx-auto px-4 text-center">
-        <h2 class="text-2xl font-bold text-gray-800 mb-4">Ready to submit your paper?</h2>
-        <a href="{% url 'submit_paper' %}" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200">
-            Submit Your Paper Now
-        </a>
-    </div>
-</section>
 {% endblock %}

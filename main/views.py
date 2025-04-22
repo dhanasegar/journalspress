@@ -1,160 +1,135 @@
-from django.shortcuts import get_object_or_404, render, redirect
-from .forms import PaperSubmissionForm, AuthorFormSet
-from .models import Author, Journal, JournalDetail, SubmittedPaper
+from django.shortcuts import render, redirect
 from django.contrib import messages
-
-# Import JOURNAL_CHOICES from models
-from .models import JOURNAL_CHOICES
-
-from django.shortcuts import get_object_or_404, render, redirect
-from .forms import PaperSubmissionForm, AuthorFormSet
-from .models import Author, Journal, JournalDetail, SubmittedPaper
-from django.contrib import messages
+from .models import Journal
 
 def home(request):
-    # Filter by approved papers (status='approved')
-    category = request.GET.get('category', None)
-    papers = SubmittedPaper.objects.filter(status='approved')
-    
-    if category and category != 'all':
-        papers = papers.filter(journal=category)
-    
-    context = {
-        'papers': papers,
-        'JOURNAL_CHOICES': JOURNAL_CHOICES,
-    }
-    return render(request, 'home.html', context)
-
-def journals(request):
-    """Render all approved journals with filtering"""
-    category = request.GET.get('category', None)
-    papers = SubmittedPaper.objects.filter(status='approved')
-    
-    if category and category != 'all':
-        papers = papers.filter(journal=category)
-    
-    context = {
-        'papers': papers,
-        'JOURNAL_CHOICES': JOURNAL_CHOICES,
-    }
-    return render(request, 'journals.html', context)
-
-# ... rest of your views remain the same ...
+    journals = JournalSubmission.objects.filter(status='approved')
+    categories = [
+        "Pharmacy", "Management", "Physics", "Applied Chemistry", "Applied Mathematics",
+        "Applied Science", "Sports", "Physical Education", "Yoga", "Physiotherapy",
+        "Agriculture", "Legal Education", "Medical Research", "Clinical Research",
+        "Mechanical Engineering", "Electrical Engineering", "Computer Engineering",
+        "Software Engineering"
+    ]
+    selected_category = request.GET.get('category', '')
+    if selected_category:
+        journals = journals.filter(journal__name=selected_category)
+    return render(request, 'home.html', {'journals': journals, 'categories': categories, 'selected_category': selected_category})
 
 def about(request):
-   
     return render(request, 'about.html')
 
 def callforpapers(request):
-  
     return render(request, 'callforpapers.html')
 
-# views.py
-def submit_paper(request):
-    if request.method == 'POST':
-        paper_form = PaperSubmissionForm(request.POST, request.FILES)
-        author_formset = AuthorFormSet(request.POST, prefix='authors')
-        
-        if paper_form.is_valid() and author_formset.is_valid():
-            paper = paper_form.save(commit=False)
-            paper.status = 'submitted'
-            paper.save()
-            
-            authors = author_formset.save(commit=False)
-            for author in authors:
-                author.paper = paper
-                author.save()
-            
-            messages.success(request, 'Your paper has been submitted successfully! It will be published after approval.')
-            return redirect('submission_success')
-    else:
-        paper_form = PaperSubmissionForm()
-        author_formset = AuthorFormSet(queryset=Author.objects.none(), prefix='authors')
-    
-    return render(request, 'submitpaper.html', {
-        'form': paper_form,
-        'formset': author_formset,
-    })
 
-# def journals(request):
-#     """Render all approved journals with filtering"""
-#     category = request.GET.get('category', None)
-#     papers = SubmittedPaper.objects.filter(is_approved=True)
-    
-#     if category and category != 'all':
-#         papers = papers.filter(journal=category)
-    
-#     context = {
-#         'papers': papers,
-#         'JOURNAL_CHOICES': JOURNAL_CHOICES,
-#     }
-#     return render(request, 'journals.html', context)
 
-from django.http import JsonResponse
-from django.template.loader import render_to_string
 
-def filter_journals(request):
-    category = request.GET.get('category', None)
-    papers = SubmittedPaper.objects.filter(is_approved=True)
-    
-    if category and category != 'all':
-        papers = papers.filter(journal=category)
-    
-    html = render_to_string('partials/journal_list.html', {
-        'papers': papers,
-        'request': request  # Pass request if needed for other template tags
-    })
-    return JsonResponse({'html': html})
-
-def submission_success(request):
-  
-    return render(request, 'submission_success.html')
 
 def conference(request):
-  
     return render(request, 'conference.html')
+# main/views.py
+# main/views.py
+from django.shortcuts import render, redirect
+from .models import Journal, JournalSubmission
+from django.contrib import messages
+import os
+from django.conf import settings
 
-# views.py
-from django.contrib.auth.decorators import login_required
-from django.db.models import Q
+def submit_paper(request):
+    journals = Journal.objects.all()
+    return render(request, 'submit_paper.html', {'journals': journals})
 
-def journal_detail(request, journal_code):
-    journal = get_object_or_404(Journal, code=journal_code)
-    
-    # Get approved papers for this specific journal
-    papers = SubmittedPaper.objects.filter(
-        journal=journal,
-        status='approved'
-    ).order_by('-approved_at')
-    
-    # Get or create journal details
-    detail, created = JournalDetail.objects.get_or_create(journal=journal)
-    
-    context = {
-        'journal': journal,
-        'detail': detail,
-        'papers': papers,
-    }
-    return render(request, 'journal_detail.html', context)  
-@login_required
-def dashboard(request):
-    # For authors
-    submitted_papers = SubmittedPaper.objects.filter(
-        authors__email=request.user.email
-    ).distinct().order_by('-submitted_at')
-    
-    # For admin
+def submit_paper2(request):
+    if request.method == 'POST':
+        form_data = {
+            'journal': request.POST.get('journal'),
+            'title': request.POST.get('title'),
+            'abstract': request.POST.get('abstract'),
+            'keywords': request.POST.get('keywords'),
+            'first_name': request.POST.get('first_name'),
+            'last_name': request.POST.get('last_name'),
+            'email': request.POST.get('email'),
+            'phone': request.POST.get('phone'),
+            'country': request.POST.get('country'),
+            'organization': request.POST.get('organization'),
+            'website': request.POST.get('website'),
+        }
+        
+        cover_image = request.FILES.get('cover_image')
+        if cover_image:
+            cover_path = os.path.join(settings.MEDIA_ROOT, 'covers', cover_image.name)
+            os.makedirs(os.path.dirname(cover_path), exist_ok=True)
+            with open(cover_path, 'wb+') as destination:
+                for chunk in cover_image.chunks():
+                    destination.write(chunk)
+            form_data['cover_path'] = cover_path
+            
+            request.session['form1_data'] = form_data
+            return render(request, 'submit_paper2.html', {'form_data': form_data})
+        else:
+            messages.error(request, "Please upload a cover image.")
+            return redirect('submit_paper')
+    return redirect('submit_paper')
+
+def submit_complete(request):
+    if request.method == 'POST':
+        form1_data = request.session.get('form1_data', {})
+        form2_data = request.POST.copy()
+        form2_data.update(request.FILES)
+        
+        journal_submission = JournalSubmission(
+            journal_id=form1_data['journal'],
+            title=form1_data['title'],
+            abstract=form1_data['abstract'],
+            keywords=form1_data['keywords'],
+            cover_image=os.path.relpath(form1_data['cover_path'], settings.MEDIA_ROOT),
+            first_name=form1_data['first_name'],
+            last_name=form1_data['last_name'],
+            email=form1_data['email'],
+            phone=form1_data['phone'],
+            country=form1_data['country'],
+            organization=form1_data['organization'],
+            website=form1_data['website'],
+            about=form2_data['about'],
+            aim_scope=form2_data['aim_scope'],
+            call_for_papers=form2_data['call_for_papers'],
+            author_guidelines=form2_data['author_guidelines'],
+            editorial_board=form2_data['editorial_board'],
+            archive=form2_data['archive'],
+            indexes=form2_data['indexes'],
+            downloads=form2_data['downloads']
+        )
+        journal_submission.save()
+        
+        del request.session['form1_data']
+        messages.success(request, 'Paper submitted successfully!')
+        return redirect('journal_list')
+    return redirect('submit_paper')
+
+# main/views.py (update journal_list only)
+def journal_list(request):
+    journals = JournalSubmission.objects.filter(status='approved')
+    categories = [
+        "Pharmacy", "Management", "Physics", "Applied Chemistry", "Applied Mathematics",
+        "Applied Science", "Sports", "Physical Education", "Yoga", "Physiotherapy",
+        "Agriculture", "Legal Education", "Medical Research", "Clinical Research",
+        "Mechanical Engineering", "Electrical Engineering", "Computer Engineering",
+        "Software Engineering"
+    ]
+    selected_category = request.GET.get('category', '')
+    if selected_category:
+        journals = journals.filter(journal__name=selected_category)
+    return render(request, 'journals.html', {'journals': journals, 'categories': categories, 'selected_category': selected_category})
+
+def journal_details(request, journal_id):
+    journal = JournalSubmission.objects.get(id=journal_id)
+    return render(request, 'partials/journal_detail.html', {'journal': journal})
+
+def admin_approve(request, journal_id):
     if request.user.is_staff:
-        pending_papers = SubmittedPaper.objects.filter(status='submitted')
-        approved_papers = SubmittedPaper.objects.filter(status='approved')
-    else:
-        pending_papers = None
-        approved_papers = None
-    
-    context = {
-        'submitted_papers': submitted_papers,
-        'pending_papers': pending_papers,
-        'approved_papers': approved_papers,
-    }
-    return render(request, 'dashboard.html', context)
-    
+        journal = JournalSubmission.objects.get(id=journal_id)
+        journal.status = 'approved'  # Updated to use status
+        journal.save()
+        messages.success(request, 'Journal approved successfully!')
+    return redirect('admin:index')
