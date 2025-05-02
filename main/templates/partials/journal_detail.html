@@ -1,46 +1,163 @@
 {% extends 'base.html' %}
 
 {% block content %}
+ <!-- Hero Section -->
+ <section class="relative bg-gradient-to-r from-purple-600 to-indigo-800 py-20">
+    <div class="container mx-auto px-6 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-white uppercase mb-6">{{ journal.title }}</h1>
+
+        {% comment %} <p class="text-xl text-purple-100 max-w-3xl mx-auto">{{ journal.abstract }}</p> {% endcomment %}
+    </div>
+</section>
+
 <div class="container mx-auto p-6">
-    <div class="bg-white p-6 rounded-lg shadow">
-        <img src="{{ journal.cover_image.url }}" alt="Cover" class="w-full h-64 object-cover mb-6 rounded">
-        <h1 class="text-3xl font-bold mb-4">{{ journal.title }}</h1>
-        
-        <div class="space-y-6">
-            <div>
-                <h2 class="text-xl font-semibold">About Journal</h2>
-                <p class="text-gray-600">{{ journal.about }}</p>
+    <h1 class="text-3xl font-bold text-center mb-6 text-purple-600"> Author : {{ journal.first_name }} {{ journal.last_name }}</h1>
+    
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <!-- Main Grid Layout -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-0 min-h-[500px]">
+            <!-- Navigation Column - Single Column Grid -->
+            <div class="bg-purple-50 p-4 border-r border-purple-200">
+                <div class="grid grid-cols-1 gap-1 h-full font-bold">
+                    <button onclick="showSection('about')" class="nav-button active">
+                        About Journal
+                    </button>
+                    <button onclick="showSection('aim')" class="nav-button">
+                        Aim & Scope
+                    </button>
+                    <button onclick="showSection('call')" class="nav-button">
+                        Call for Papers
+                    </button>
+                    <button onclick="showSection('guidelines')" class="nav-button">
+                        Author Guidelines
+                    </button>
+                    <button onclick="showSection('board')" class="nav-button">
+                        Editorial Board
+                    </button>
+                    <button onclick="showSection('archive')" class="nav-button">
+                        Archive
+                    </button>
+                    <button onclick="showSection('indexes')" class="nav-button">
+                        Indexes
+                    </button>
+                    <button onclick="showSection('download')" class="nav-button">
+                        Download
+                    </button>
+                </div>
             </div>
-            <div>
-                <h2 class="text-xl font-semibold">Aim & Scope</h2>
-                <p class="text-gray-600">{{ journal.aim_scope }}</p>
-            </div>
-            <div>
-                <h2 class="text-xl font-semibold">Call for Papers</h2>
-                <p class="text-gray-600">{{ journal.call_for_papers }}</p>
-            </div>
-            <div>
-                <h2 class="text-xl font-semibold">Author Guidelines</h2>
-                <p class="text-gray-600">{{ journal.author_guidelines }}</p>
-            </div>
-            <div>
-                <h2 class="text-xl font-semibold">Editorial Board</h2>
-                <p class="text-gray-600">{{ journal.editorial_board }}</p>
-            </div>
-            <div>
-                <h2 class="text-xl font-semibold">Archive</h2>
-                <p class="text-gray-600">{{ journal.archive }}</p>
-            </div>
-            <div>
-                <h2 class="text-xl font-semibold">Indexes</h2>
-                <p class="text-gray-600">{{ journal.indexes }}</p>
-            </div>
-            <div>
-                <h2 class="text-xl font-semibold">Download</h2>
-                <a href="{{ journal.downloads.url }}" class="text-blue-500 hover:underline">Download PDF</a>
+            
+            <!-- Content Column -->
+            <div class="col-span-1 md:col-span-4 p-6">
+                <!-- Tab Content Sections -->
+                <div id="about" class="tab-content active">
+                    <h2 class="section-title text-purple-600 font-bold  text-2xl">About Journal</h2>
+                    <div class="section-content mt-8 text-lg">{{ journal.about }}</div>
+                </div>
+                
+                <div id="aim" class="tab-content hidden">
+                    <h2 class="section-title text-purple-600 font-bold  text-2xl ">Aim & Scope</h2>
+                    <div class="section-content mt-8 text-lg">{{ journal.aim_scope }}</div>
+                </div>
+                
+                <div id="call" class="tab-content hidden">
+                    <h2 class="section-title text-purple-600 font-bold  text-2xl ">Call for Papers</h2>
+                    <div class="section-content mt-8 text-lg">{{ journal.call_for_papers }}</div>
+                </div>
+                
+                <div id="guidelines" class="tab-content hidden">
+                    <h2 class="section-title text-purple-600 font-bold   text-2xl">Author Guidelines</h2>
+                    <div class="section-content mt-8 text-lg">{{ journal.author_guidelines }}</div>
+                </div>
+                
+                <div id="board" class="tab-content hidden">
+                    <h2 class="section-title text-purple-600 font-bold  text-2xl">Editorial Board</h2>
+                    <div class="section-content mt-8 text-lg">{{ journal.editorial_board }}</div>
+                </div>
+                
+                <div id="archive" class="tab-content hidden">
+                    <h2 class="section-title text-purple-600 font-bold  text-2xl ">Archive</h2>
+                    <div class="section-content mt-8 text-lg">{{ journal.archive }}</div>
+                </div>
+                
+                <div id="indexes" class="tab-content hidden">
+                    <h2 class="section-title text-purple-600 font-bold text-2xl ">Indexes</h2>
+                    <div class="section-content mt-8 text-lg">{{ journal.indexes }}</div>
+                </div>
+                
+                <div id="download" class="tab-content hidden">
+                    <h2 class="section-title text-purple-600 font-bold  text-2xl">Download</h2>
+                    <div class="section-content mt-8 text-lg ">
+                        <a href="{{ journal.downloads.url }}" class="download-button hover:underline uppercase hover:text-purple-600 ">
+                            {{ journal.title }} <i class="fa-solid fa-download "></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+{% include 'partials/sub_footer.html' %}
+<script>
+    function showSection(sectionId) {
+        // Hide all tab contents
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.add('hidden');
+            content.classList.remove('active');
+        });
+        
+        // Show the selected tab content
+        document.getElementById(sectionId).classList.remove('hidden');
+        document.getElementById(sectionId).classList.add('active');
+        
+        // Update all navigation buttons
+        document.querySelectorAll('.nav-button').forEach(button => {
+            button.classList.remove('active');
+        });
+        
+        // Mark active button
+        event.currentTarget.classList.add('active');
+    }
+</script>
 
+<style>
+    /* Navigation Button Styles */
+    .nav-button {
+        @apply text-left px-4 py-3 w-full font-medium text-sm rounded-lg 
+               text-purple-700 hover:bg-purple-100 transition-colors;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .nav-button.active {
+        @apply bg-purple-100 text-purple-800 border-l-4 border-purple-600 
+               font-semibold;
+    }
+    
+    /* Content Section Styles */
+    .section-title {
+        @apply text-2xl font-semibold mb-4 text-purple-700;
+    }
+    .section-content {
+        @apply text-gray-700 leading-relaxed;
+    }
+    
+    /* Download Button */
+    .download-button {
+        @apply inline-block px-4 py-2 bg-purple-600 text-white rounded-lg 
+               hover:bg-purple-700 transition-colors;
+    }
+    
+    /* Tab Content Animation */
+    .tab-content {
+        display: none;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+    .tab-content.active {
+        display: block;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
 {% endblock %}

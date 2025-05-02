@@ -133,3 +133,26 @@ def admin_approve(request, journal_id):
         journal.save()
         messages.success(request, 'Journal approved successfully!')
     return redirect('admin:index')
+
+# Add this to your views.py
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def dash(request):
+    # Get user's submitted papers
+    submitted_papers = JournalSubmission.objects.filter(email=request.user.email)
+    
+    # Admin-specific data
+    pending_papers = None
+    approved_papers = None
+    
+    if request.user.is_staff:
+        pending_papers = JournalSubmission.objects.filter(status='under_review')
+        approved_papers = JournalSubmission.objects.filter(status='approved')
+    
+    context = {
+        'submitted_papers': submitted_papers,
+        'pending_papers': pending_papers,
+        'approved_papers': approved_papers,
+    }
+    return render(request, 'dashboard.html', context)

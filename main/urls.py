@@ -16,4 +16,5 @@ urlpatterns = [
     path('journals/', views.journal_list, name='journal_list'),
     path('journal/<int:journal_id>/', views.journal_details, name='journal_details'),
     path('admin/approve/<int:journal_id>/', views.admin_approve, name='admin_approve'),
+    path('dash/', views.dash, name='dashboard'),
 ]

@@ -2,6 +2,11 @@
 from django.contrib import admin
 from .models import Journal, JournalSubmission
 
+
+admin.site.site_header = "SciManPress Admin"
+admin.site.site_title = "SciManPress Portal"
+admin.site.index_title = "Welcome to SciManPress Admin Dashboard"
+
 @admin.register(Journal)
 class JournalAdmin(admin.ModelAdmin):
     list_display = ('name', 'is_approved')
