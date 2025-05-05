@@ -15,32 +15,32 @@
     
     <div class="bg-white rounded-lg shadow-lg overflow-hidden">
         <!-- Main Grid Layout -->
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-0 min-h-[500px]">
+        <div class="grid grid-cols-1 md:grid-cols-6 gap-0 min-h-[500px]">
             <!-- Navigation Column - Single Column Grid -->
             <div class="bg-purple-50 p-4 border-r border-purple-200">
-                <div class="grid grid-cols-1 gap-1 h-full font-bold">
-                    <button onclick="showSection('about')" class="nav-button active">
+                <div class="grid grid-cols-1 gap-1 h-full font-bold text-left">
+                    <button onclick="showSection('about')" class="nav-button active text-left">
                         About Journal
                     </button>
-                    <button onclick="showSection('aim')" class="nav-button">
+                    <button onclick="showSection('aim')" class="nav-button text-left">
                         Aim & Scope
                     </button>
-                    <button onclick="showSection('call')" class="nav-button">
+                    <button onclick="showSection('call')" class="nav-button text-left">
                         Call for Papers
                     </button>
-                    <button onclick="showSection('guidelines')" class="nav-button">
+                    <button onclick="showSection('guidelines')" class="nav-button text-left">
                         Author Guidelines
                     </button>
-                    <button onclick="showSection('board')" class="nav-button">
+                    <button onclick="showSection('board')" class="nav-button text-left">
                         Editorial Board
                     </button>
-                    <button onclick="showSection('archive')" class="nav-button">
+                    <button onclick="showSection('archive')" class="nav-button text-left">
                         Archive
                     </button>
-                    <button onclick="showSection('indexes')" class="nav-button">
+                    <button onclick="showSection('indexes')" class="nav-button text-left">
                         Indexes
                     </button>
-                    <button onclick="showSection('download')" class="nav-button">
+                    <button onclick="showSection('download')" class="nav-button text-left">
                         Download
                     </button>
                 </div>
@@ -87,9 +87,13 @@
                 <div id="download" class="tab-content hidden">
                     <h2 class="section-title text-purple-600 font-bold  text-2xl">Download</h2>
                     <div class="section-content mt-8 text-lg ">
-                        <a href="{{ journal.downloads.url }}" class="download-button hover:underline uppercase hover:text-purple-600 ">
-                            {{ journal.title }} <i class="fa-solid fa-download "></i>
+                        {% if journal.downloads %}
+                        <a href="{{ journal.downloads.url }}" class="download-button hover:underline uppercase hover:text-purple-600 " target="_blank" rel="noopener noreferrer">
+                            Download {{ journal.title }} <i class="fa-solid fa-download "></i>
                         </a>
+                        {% else %}
+                        <p class="text-gray-500">No download available at this time.</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>

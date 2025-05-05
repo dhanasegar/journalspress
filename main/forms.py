@@ -1,35 +1,21 @@
 from django import forms
-from .models import Journal, Submission, Author
+from .models import Journal, JournalSubmission, ConferenceSubmission
 
 JOURNAL_CHOICES = [
-    ('', '-- Select Journal --'),  # Empty/default option
+    ('', '-- Select Journal --'),
     ('Pharmacy', 'Pharmacy'),
-    ('Management', 'Management'),
-    ('Physics', 'Physics'),
-    ('Applied Chemistry', 'Applied Chemistry'),
-    ('Applied Mathematics', 'Applied Mathematics'),
-    ('Applied Science', 'Applied Science'),
-    ('Sports', 'Sports'),
-    ('Physical Education', 'Physical Education'),
-    ('Yoga', 'Yoga'),
-    ('Physiotherapy', 'Physiotherapy'),
-    ('Agriculture', 'Agriculture'),
-    ('Legal Education', 'Legal Education'),
-    ('Medical Research', 'Medical Research'),
-    ('Clinical Research', 'Clinical Research'),
-    ('Mechanical Engineering', 'Mechanical Engineering'),
-    ('Electrical Engineering', 'Electrical Engineering'),
-    ('Computer Engineering', 'Computer Engineering'),
-    ('Software Engineering', 'Software Engineering'),
+    # ... keep your other choices ...
 ]
 
 class PaperSubmissionForm(forms.ModelForm):
-    journal = forms.ChoiceField(choices=JOURNAL_CHOICES, widget=forms.Select(attrs={'class': 'w-full p-2 border rounded'}))
-    
-
     class Meta:
-        model = Submission
-        fields = ['journal', 'title', 'abstract', 'keywords', 'paper_file', 'cover_image']
+        model = JournalSubmission
+        fields = [
+            'journal', 'title', 'abstract', 'keywords', 
+            'paper_file', 'cover_image', 'first_name',
+            'last_name', 'email', 'phone_number',
+            'country', 'organization', 'website'
+        ]
         widgets = {
             'abstract': forms.Textarea(attrs={'rows': 5, 'class': 'w-full p-2 border rounded'}),
             'title': forms.TextInput(attrs={'class': 'w-full p-2 border rounded'}),
@@ -37,18 +23,6 @@ class PaperSubmissionForm(forms.ModelForm):
             'paper_file': forms.FileInput(attrs={'class': 'w-full p-2 border rounded'}),
             'cover_image': forms.FileInput(attrs={'class': 'w-full p-2 border rounded'}),
             'journal': forms.Select(attrs={'class': 'w-full p-2 border rounded'}),
-        }
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['journal'].queryset = Journal.objects.filter(is_published=True)
-        self.fields['journal'].empty_label = "-- Select Journal --"
-
-class AuthorForm(forms.ModelForm):
-    class Meta:
-        model = Author
-        fields = ['first_name', 'last_name', 'email', 'phone_number', 'country', 'organization', 'website']
-        widgets = {
             'first_name': forms.TextInput(attrs={'class': 'w-full p-2 border rounded'}),
             'last_name': forms.TextInput(attrs={'class': 'w-full p-2 border rounded'}),
             'email': forms.EmailInput(attrs={'class': 'w-full p-2 border rounded'}),
@@ -58,9 +32,37 @@ class AuthorForm(forms.ModelForm):
             'website': forms.URLInput(attrs={'class': 'w-full p-2 border rounded'}),
         }
 
-AuthorFormSet = forms.modelformset_factory(
-    Author,
-    form=AuthorForm,
-    extra=1,
-    can_delete=False
-)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['journal'].queryset = Journal.objects.filter(is_published=True)
+        self.fields['journal'].empty_label = "-- Select Journal --"
+
+# Removed AuthorForm and AuthorFormSet as they're not needed with the combined form
+
+class ConferenceSubmissionForm(forms.ModelForm):
+    class Meta:
+        model = ConferenceSubmission
+        fields = [
+            'conference_name', 'location', 'start_date', 'end_date', 'brochure',
+            'submitter_name', 'phone_number', 'email'
+        ]
+        widgets = {
+            'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'w-full p-3 rounded-lg  bg-gray-100 text-black border border-gray-600'}),
+            'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'w-full p-3 rounded-lg  bg-gray-100 text-black border border-gray-600'}),
+            'conference_name': forms.TextInput(attrs={'class': 'w-full p-3 rounded-lg  bg-gray-100 text-black border border-gray-600'}),
+            'location': forms.TextInput(attrs={'class': 'w-full p-3 rounded-lg  bg-gray-100 text-black border border-gray-600'}),
+            'brochure': forms.FileInput(attrs={'class': 'w-full p-3 rounded-lg  bg-gray-100 text-black border border-gray-600'}),
+            'submitter_name': forms.TextInput(attrs={'class': 'w-full p-3 rounded-lg  bg-gray-100 text-black border border-gray-600'}),
+            'phone_number': forms.TextInput(attrs={'class': 'w-full p-3 rounded-lg  bg-gray-100 text-black border border-gray-600'}),
+            'email': forms.EmailInput(attrs={'class': 'w-full p-3 rounded-lg  bg-gray-100 text-black border border-gray-600'}),
+        }
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        start_date = cleaned_data.get('start_date')
+        end_date = cleaned_data.get('end_date')
+        
+        if start_date and end_date and start_date > end_date:
+            raise forms.ValidationError("End date must be after start date.")
+        
+        return cleaned_data

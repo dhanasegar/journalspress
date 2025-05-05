@@ -6,7 +6,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('callforpapers/', views.callforpapers, name='callforpapers'),
    
-    path('conference/', views.conference, name='conference'),
+    path('conference/', views.conference_page, name='conference_page'),
 
 
 
@@ -16,5 +16,6 @@ urlpatterns = [
     path('journals/', views.journal_list, name='journal_list'),
     path('journal/<int:journal_id>/', views.journal_details, name='journal_details'),
     path('admin/approve/<int:journal_id>/', views.admin_approve, name='admin_approve'),
-    path('dash/', views.dash, name='dashboard'),
+    path('dash/', views.dash, name='dash'),
+    
 ]

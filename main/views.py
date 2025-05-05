@@ -156,3 +156,29 @@ def dash(request):
         'approved_papers': approved_papers,
     }
     return render(request, 'dashboard.html', context)
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import ConferenceSubmissionForm
+from .models import ConferenceSubmission
+
+def conference_page(request):
+    if request.method == 'POST':
+        form = ConferenceSubmissionForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your conference submission has been received and is pending approval.')
+            return redirect('conference_page')
+    else:
+        form = ConferenceSubmissionForm()
+    
+    approved_conferences = ConferenceSubmission.objects.filter(status='approved').order_by('-created_at')
+    
+    return render(request, 'conference.html', {
+        'form': form,
+        'conferences': approved_conferences,
+    })
+
+
+
+
+    
