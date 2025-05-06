@@ -30,7 +30,7 @@
               <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
             </div>
             <div class="text-gray-700">
-              <span class="font-bold">4k+</span> Join 4000+ Students
+              <span class="font-bold"></span> Join 4k+ Journals & 10k+ Researchers
             </div>
           </div>
         </div>
@@ -103,62 +103,62 @@
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Get all slide containers
-  const slideContainers = document.querySelectorAll('.slide-container');
-  
-  // Function to cycle images with slide effect
-  function cycleSlides(container) {
-    const wrapper = container.querySelector('.slide-wrapper');
-    const img = container.querySelector('.slide-image');
-    if (!img) return;
+  document.addEventListener('DOMContentLoaded', function() {
+    // Get all slide containers
+    const slideContainers = document.querySelectorAll('.slide-container');
     
-    const images = img.getAttribute('data-images').split(',');
-    const currentSrc = img.getAttribute('src');
-    let currentIndex = images.indexOf(currentSrc);
-    
-    // Calculate next index
-    currentIndex = (currentIndex + 1) % images.length;
-    
-    // Create new image element for the incoming slide
-    const newImg = document.createElement('img');
-    newImg.src = images[currentIndex];
-    newImg.alt = img.alt;
-    newImg.className = 'slide-image w-full h-full object-cover absolute top-0 left-0 slide-in';
-    newImg.setAttribute('data-images', img.getAttribute('data-images'));
-    
-    // Add active class to new image after a brief delay
-    setTimeout(() => {
-      newImg.classList.remove('slide-in');
-      newImg.classList.add('active');
-    }, 10);
-    
-    // Add slide-out class to current image
-    img.classList.add('slide-out');
-    
-    // Append new image to wrapper
-    wrapper.appendChild(newImg);
-    
-    // Remove old image after animation completes
-    setTimeout(() => {
-      img.remove();
-    }, 1000);
-  }
-  
-  // Initialize timers for each container with their respective delays
-  slideContainers.forEach(container => {
-    const delay = parseFloat(container.getAttribute('data-delay')) * 1000;
-    
-    // Initial delay before first cycle
-    setTimeout(() => {
-      // First cycle
-      cycleSlides(container);
+    // Function to cycle images with slide effect
+    function cycleSlides(container) {
+      const wrapper = container.querySelector('.slide-wrapper');
+      const img = container.querySelector('.slide-image');
+      if (!img) return;
       
-      // Set up recurring cycles
-      setInterval(() => cycleSlides(container), 4000); // Total cycle time (delay + animation)
-    }, delay);
+      const images = img.getAttribute('data-images').split(',');
+      const currentSrc = img.getAttribute('src');
+      let currentIndex = images.indexOf(currentSrc);
+      
+      // Calculate next index
+      currentIndex = (currentIndex + 1) % images.length;
+      
+      // Create new image element for the incoming slide
+      const newImg = document.createElement('img');
+      newImg.src = images[currentIndex];
+      newImg.alt = img.alt;
+      newImg.className = 'slide-image w-full h-full object-cover absolute top-0 left-0 slide-in';
+      newImg.setAttribute('data-images', img.getAttribute('data-images'));
+      
+      // Add active class to new image after a brief delay
+      setTimeout(() => {
+        newImg.classList.remove('slide-in');
+        newImg.classList.add('active');
+      }, 10);
+      
+      // Add slide-out class to current image
+      img.classList.add('slide-out');
+      
+      // Append new image to wrapper
+      wrapper.appendChild(newImg);
+      
+      // Remove old image after animation completes
+      setTimeout(() => {
+        img.remove();
+      }, 1000);
+    }
+    
+    // Initialize timers for each container with their respective delays
+    slideContainers.forEach(container => {
+      const delay = parseFloat(container.getAttribute('data-delay')) * 1000;
+      
+      // Initial delay before first cycle
+      setTimeout(() => {
+        // First cycle
+        cycleSlides(container);
+        
+        // Set up recurring cycles
+        setInterval(() => cycleSlides(container), 4000); // Total cycle time (delay + animation)
+      }, delay);
+    });
   });
-});
 </script>
   
 <!-- Indexed By Section -->
@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="bg-white rounded-xl shadow-lg p-8 border-l-4 border-purple-600 hover:shadow-xl transition-shadow">
         <div class="flex items-center mb-6">
           <img class="w-12 h-12 rounded-full object-cover mr-4" 
-               src="{% static 'images/board4.jpg' %}" 
+               src="{% static 'images/board1.jpg' %}" 
                alt="Dr. Amina Diallo">
           <div>
             <h3 class="font-bold text-gray-800">Dr. Amina Diallo</h3>

@@ -2,30 +2,58 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>SciManPress</title>
+    <title>SciManPress{% block title %}{% endblock %}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Scientific Management Press - Your trusted source for scientific publications">
 
     <!-- Favicon -->
     <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
 
     {% tailwind_css %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
     
+    <!-- Custom CSS if needed -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    
+    <!-- HTMX for modern interactive elements -->
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+    
+    {% block extra_head %}{% endblock %}
   </head>
 
-
-	<body class="bg-white">
-
-	{% include 'core/header.html' %}
-		
-    <div class="wrapper">
-        {% block content %}
-        {% endblock %}
+  <body class="bg-gray-50 flex flex-col min-h-screen">
+    <!-- Flash Messages -->
+    {% if messages %}
+    <div class="fixed top-4 right-4 z-50 space-y-2 w-80">
+      {% for message in messages %}
+      <div class="p-4 rounded-lg shadow-lg {% if message.tags == 'error' %}bg-red-100 text-red-800{% elif message.tags == 'success' %}bg-green-100 text-green-800{% else %}bg-blue-100 text-blue-800{% endif %}">
+        <div class="flex justify-between items-center">
+          <span>{{ message }}</span>
+          <button onclick="this.parentElement.parentElement.remove()" class="text-lg">&times;</button>
+        </div>
+      </div>
+      {% endfor %}
     </div>
-	
-		{% include 'core/footer.html' %}
-	</body>
+    {% endif %}
+
+    {% include 'core/header.html' %}
+    
+    <main class="flex-grow">
+      {% block content %}
+      <!-- Main content will be inserted here -->
+      {% endblock %}
+    </main>
+    
+    {% include 'core/footer.html' %}
+
+    <!-- Alpine.js for interactivity -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+    
+    {% block extra_js %}{% endblock %}
+  </body>
 </html>

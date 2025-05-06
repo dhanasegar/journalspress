@@ -11,8 +11,7 @@ class PaperSubmissionForm(forms.ModelForm):
     class Meta:
         model = JournalSubmission
         fields = [
-            'journal', 'title', 'abstract', 'keywords', 
-            'paper_file', 'cover_image', 'first_name',
+            'journal', 'title', 'abstract', 'keywords', 'cover_image', 'first_name',
             'last_name', 'email', 'phone_number',
             'country', 'organization', 'website'
         ]
@@ -20,7 +19,7 @@ class PaperSubmissionForm(forms.ModelForm):
             'abstract': forms.Textarea(attrs={'rows': 5, 'class': 'w-full p-2 border rounded'}),
             'title': forms.TextInput(attrs={'class': 'w-full p-2 border rounded'}),
             'keywords': forms.TextInput(attrs={'class': 'w-full p-2 border rounded'}),
-            'paper_file': forms.FileInput(attrs={'class': 'w-full p-2 border rounded'}),
+            # 'paper_file': forms.FileInput(attrs={'class': 'w-full p-2 border rounded'}),
             'cover_image': forms.FileInput(attrs={'class': 'w-full p-2 border rounded'}),
             'journal': forms.Select(attrs={'class': 'w-full p-2 border rounded'}),
             'first_name': forms.TextInput(attrs={'class': 'w-full p-2 border rounded'}),
@@ -47,14 +46,14 @@ class ConferenceSubmissionForm(forms.ModelForm):
             'submitter_name', 'phone_number', 'email'
         ]
         widgets = {
-            'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'w-full p-3 rounded-lg  bg-gray-100 text-black border border-gray-600'}),
-            'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'w-full p-3 rounded-lg  bg-gray-100 text-black border border-gray-600'}),
-            'conference_name': forms.TextInput(attrs={'class': 'w-full p-3 rounded-lg  bg-gray-100 text-black border border-gray-600'}),
-            'location': forms.TextInput(attrs={'class': 'w-full p-3 rounded-lg  bg-gray-100 text-black border border-gray-600'}),
-            'brochure': forms.FileInput(attrs={'class': 'w-full p-3 rounded-lg  bg-gray-100 text-black border border-gray-600'}),
-            'submitter_name': forms.TextInput(attrs={'class': 'w-full p-3 rounded-lg  bg-gray-100 text-black border border-gray-600'}),
-            'phone_number': forms.TextInput(attrs={'class': 'w-full p-3 rounded-lg  bg-gray-100 text-black border border-gray-600'}),
-            'email': forms.EmailInput(attrs={'class': 'w-full p-3 rounded-lg  bg-gray-100 text-black border border-gray-600'}),
+            'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'w-full p-3 rounded-lg  bg-purple-100 text-black border border-gray-600'}),
+            'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'w-full p-3 rounded-lg  bg-purple-100 text-black border border-gray-600'}),
+            'conference_name': forms.TextInput(attrs={'class': 'w-full p-3 rounded-lg  bg-purple-100 text-black border border-gray-600'}),
+            'location': forms.TextInput(attrs={'class': 'w-full p-3 rounded-lg bg-purple-100 text-black border border-gray-600'}),
+            'brochure': forms.FileInput(attrs={'class': 'w-full p-3 rounded-lg  bg-purple-100 text-black border border-gray-600'}),
+            'submitter_name': forms.TextInput(attrs={'class': 'w-full p-3 rounded-lg bg-purple-100 text-black border border-gray-600'}),
+            'phone_number': forms.TextInput(attrs={'class': 'w-full p-3 rounded-lg  bg-purple-100 text-black border border-gray-600'}),
+            'email': forms.EmailInput(attrs={'class': 'w-full p-3 rounded-lg  bg-purple-100 text-black border border-gray-600'}),
         }
     
     def clean(self):

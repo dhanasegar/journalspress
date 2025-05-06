@@ -21,7 +21,7 @@ class JournalSubmission(models.Model):
     abstract = models.TextField()
     keywords = models.CharField(max_length=500)
     cover_image = models.ImageField(upload_to='covers/')
-    paper_file = models.FileField(upload_to='papers/')  # Added missing field
+    # paper_file = models.FileField(upload_to='papers/')  # Added missing field
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField()

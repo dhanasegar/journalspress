@@ -18,4 +18,9 @@ urlpatterns = [
     path('admin/approve/<int:journal_id>/', views.admin_approve, name='admin_approve'),
     path('dash/', views.dash, name='dash'),
     
+
+
+    path('register/', views.register_view, name='register'),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
 ]
