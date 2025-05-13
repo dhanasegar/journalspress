@@ -145,7 +145,7 @@ def journal_list(request):
 
 def journal_details(request, journal_id):
     journal = JournalSubmission.objects.get(id=journal_id)
-    return render(request, 'partials/journal_detail.html', {'journal': journal})
+    return render(request, 'journal_detail.html', {'journal': journal})
 
 @login_required
 def admin_approve(request, journal_id):
