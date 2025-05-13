@@ -46,14 +46,32 @@ class ConferenceSubmissionForm(forms.ModelForm):
             'submitter_name', 'phone_number', 'email'
         ]
         widgets = {
-            'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'w-full p-3 rounded-lg  bg-purple-100 text-black border border-gray-600'}),
-            'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'w-full p-3 rounded-lg  bg-purple-100 text-black border border-gray-600'}),
-            'conference_name': forms.TextInput(attrs={'class': 'w-full p-3 rounded-lg  bg-purple-100 text-black border border-gray-600'}),
-            'location': forms.TextInput(attrs={'class': 'w-full p-3 rounded-lg bg-purple-100 text-black border border-gray-600'}),
-            'brochure': forms.FileInput(attrs={'class': 'w-full p-3 rounded-lg  bg-purple-100 text-black border border-gray-600'}),
-            'submitter_name': forms.TextInput(attrs={'class': 'w-full p-3 rounded-lg bg-purple-100 text-black border border-gray-600'}),
-            'phone_number': forms.TextInput(attrs={'class': 'w-full p-3 rounded-lg  bg-purple-100 text-black border border-gray-600'}),
-            'email': forms.EmailInput(attrs={'class': 'w-full p-3 rounded-lg  bg-purple-100 text-black border border-gray-600'}),
+            'start_date': forms.DateInput(attrs={
+        'type': 'date', 
+        'class': 'w-full p-3 rounded-lg bg-purple-50 text-purple-900 border border-purple-200 focus:ring-4 focus:ring-purple-300 focus:border-purple-500 transition-all'
+    }),
+    'end_date': forms.DateInput(attrs={
+        'type': 'date', 
+        'class': 'w-full p-3 rounded-lg bg-purple-50 text-purple-900 border border-purple-200 focus:ring-4 focus:ring-purple-300 focus:border-purple-500 transition-all'
+    }),
+    'conference_name': forms.TextInput(attrs={
+        'class': 'w-full p-3 rounded-lg bg-purple-50 text-purple-900 border border-purple-200 focus:ring-4 focus:ring-purple-300 focus:border-purple-500 transition-all'
+    }),
+    'location': forms.TextInput(attrs={
+        'class': 'w-full p-3 rounded-lg bg-purple-50 text-purple-900 border border-purple-200 focus:ring-4 focus:ring-purple-300 focus:border-purple-500 transition-all'
+    }),
+    'brochure': forms.FileInput(attrs={
+        'class': 'w-full p-3 rounded-lg bg-purple-50 text-purple-900 border border-purple-200 focus:ring-4 focus:ring-purple-300 focus:border-purple-500 transition-all file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-purple-600 file:text-white hover:file:bg-purple-700 transition-all'
+    }),
+    'submitter_name': forms.TextInput(attrs={
+        'class': 'w-full p-3 rounded-lg bg-purple-50 text-purple-900 border border-purple-200 focus:ring-4 focus:ring-purple-300 focus:border-purple-500 transition-all'
+    }),
+    'phone_number': forms.TextInput(attrs={
+        'class': 'w-full p-3 rounded-lg bg-purple-50 text-purple-900 border border-purple-200 focus:ring-4 focus:ring-purple-300 focus:border-purple-500 transition-all'
+    }),
+    'email': forms.EmailInput(attrs={
+        'class': 'w-full p-3 rounded-lg bg-purple-50 text-purple-900 border border-purple-200 focus:ring-4 focus:ring-purple-300 focus:border-purple-500 transition-all'
+    }),
         }
     
     def clean(self):
